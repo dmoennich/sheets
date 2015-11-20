@@ -8,8 +8,6 @@ let sass = require("gulp-sass");
 
 const distDir = "./dist";
 
-//TODO task for create js bundle with es6 support
-//TODO task to create css from scss
 //TODO task for lint js files
 //TODO tasks for executings test
 //TODO add watcher
@@ -21,7 +19,7 @@ gulp.task("buildjs", ["clean"], () => {
     return gulp.src(["./browser/app.js", "./browser/modules/**/*.js"])
         .pipe(plumber())
         .pipe(sourcemaps.init())
-        .pipe(concat('sheets-module.js'))
+        .pipe(concat('sheets-bundle.js'))
         .pipe(babel())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(distDir));
