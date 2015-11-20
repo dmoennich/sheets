@@ -1,0 +1,21 @@
+body {
+  background-color: #2B2922 !important;
+  font-family: 'Open Sans Condensed', sans-serif !important;
+  font-weight: 100;
+  color: #9acfea !important;
+}
+
+
+.headline {
+  font-size: 1.7em;
+}
+
+.cmd, .cmd:focus{
+  outline-width: 0;
+  background-color: #2B2922;
+  font-weight: 700;
+  font-size: 1.5em;
+  border: none;
+  border-bottom: 1px solid #9acfea;
+  width: 100%;
+}

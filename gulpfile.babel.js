@@ -37,5 +37,9 @@ gulp.task('buildcss', ["clean"], function () {
 gulp.task("default", ["clean", "buildcss", "buildjs"]);
 
 
+gulp.task("watch", ["default"], () => {
+    gulp.watch(["./browser/modules/**/*.js", "./browser/scss/**"], ["default"])
+        .on("change", (event) => console.log(`${event.path} was changed`));
+});
 
 
