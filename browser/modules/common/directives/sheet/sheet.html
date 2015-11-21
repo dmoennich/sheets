@@ -1,4 +1,19 @@
 <div>
     <h3>{{sheet.title}}</h3>
-    <img class="img-responsive img-thumbnail text-center" src="http://lorempixel.com/600/600" />
+    <img class="img-responsive img-thumbnail text-center" data-toggle="modal" data-target="#sheet_modal_{{sheet.id}}" src="http://lorempixel.com/600/600" />
+
+    <div class="modal fade" id="sheet_modal_{{sheet.id}}" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content sheet-modal">
+                <div class="modal-header">
+                    <div class="modal-title"><h3>{{sheet.title}}</h3></div>
+                </div>
+                <div class="modal-body">
+                    {{sheet.content}}
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
+

@@ -15,26 +15,32 @@ sheetsApp.directive("sheetGrid", () => {
 
             scope.sheets = [
                 {
+                    id: 1,
                     title: "linux commands",
                     content: "ls -l"
                 },
                 {
+                    id: 2,
                     title: "CSS3 flex overview",
                     content: "justify-conent etc."
                 },
                 {
+                    id: 3,
                     title: "some todo list",
                     content: "buy milk"
                 },
                 {
+                    id: 4,
                     title: "linux commands",
                     content: "ls -l"
                 },
                 {
+                    id: 5,
                     title: "CSS3 flex overview",
                     content: "justify-conent etc."
                 },
                 {
+                    id: 6,
                     title: "some todo list",
                     content: "buy milk"
                 }
