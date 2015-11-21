@@ -4,12 +4,13 @@
 sheetsApp.directive("sheetGrid", () => {
     return {
         restrict: "E",
+        replace: true,
         scope: {
             sheets: "="
         },
         templateUrl: "/modules/common/directives/sheetgrid/sheetgrid.html",
         link: (scope) => {
-            const maxSheetsPerRow = 4;
+            scope.maxSheetsPerRow = 4;
             scope.rows = [];
 
             scope.sheets = [
@@ -42,12 +43,12 @@ sheetsApp.directive("sheetGrid", () => {
             let currentRow = [];
             scope.sheets.forEach((sheet, index) => {
                 currentRow.push(sheet);
-                if (currentRow.length === maxSheetsPerRow || index === scope.sheets.length -1) {
+                if (currentRow.length === scope.maxSheetsPerRow || index === scope.sheets.length -1) {
                     scope.rows.push(currentRow);
                     currentRow = [];
                 }
             });
-            
+
 
 
         }
