@@ -11,7 +11,6 @@ const distDir = "./dist";
 
 //TODO task for lint js files
 //TODO tasks for executings test
-//TODO add watcher
 
 
 /**

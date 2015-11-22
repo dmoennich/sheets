@@ -21,7 +21,8 @@ module.exports = function(config) {
         "node_modules/angular/angular.js",
 		"node_modules/angular-mocks/angular-mocks.js",
 		"dist/sheets-bundle.js",
-        'test/**/*Spec.js'
+        "test/**/*Spec.js",
+		"browser/modules/**/*.html"
     ],
 
 
@@ -34,7 +35,12 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+		"browser/modules/**/*.html": ["ng-html2js"]
     },
+
+	  ngHtml2JsPreprocessor: {
+		  stripPrefix: "browser"
+	  },
 
 
     // test results reporter to use
