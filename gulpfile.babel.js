@@ -5,6 +5,7 @@ let plumber = require("gulp-plumber");
 let concat = require("gulp-concat");
 let sourcemaps = require("gulp-sourcemaps");
 let sass = require("gulp-sass");
+let karmaServer = require("karma").Server;
 
 const distDir = "./dist";
 
@@ -12,7 +13,11 @@ const distDir = "./dist";
 //TODO tasks for executings test
 //TODO add watcher
 
-//remove distribution directory
+
+/**
+ * FE SETUP
+ */
+
 gulp.task("clean", () => del([distDir]));
 
 gulp.task("buildjs", ["clean"], () => {
@@ -34,6 +39,7 @@ gulp.task('buildcss', ["clean"], function () {
         .pipe(gulp.dest(distDir));
 });
 
+// buildcss and buildjs will wait, until clean tasked finished
 gulp.task("default", ["clean", "buildcss", "buildjs"]);
 
 
@@ -41,5 +47,31 @@ gulp.task("watch", ["default"], () => {
     gulp.watch(["./browser/modules/**/*.js", "./browser/scss/**"], ["default"])
         .on("change", (event) => console.log(`${event.path} was changed`));
 });
+
+
+/**
+ * TEST CONFIG
+ */
+
+gulp.task("testbrowser", (done) => {
+    new karmaServer({
+        configFile: __dirname + '/test/browser/karma.conf.js',
+        singleRun: true
+    }, done).start();
+});
+
+
+gulp.task("test", ["testbrowser"]);
+
+
+
+
+
+
+
+
+
+
+
 
 
