@@ -5,7 +5,7 @@ describe("The test helper sheetcreator", function () {
 		var sheets = sheetsTestHelper.sheetCreator.createSheets(2);
 		expect(sheets.length).toBe(2);
 	});
-	
+
 	it("should create a sheet with random title", function () {
 		var sheet = sheetsTestHelper.sheetCreator.createSheets(1)[0];
 		expect(typeof sheet.title).toEqual("string");

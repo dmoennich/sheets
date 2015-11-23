@@ -7,11 +7,11 @@ sheetsApp.directive("sheetGrid", (Sheets) => {
         replace: true,
         scope: {
             sheets: "=",
-            sheetsPerRow: "="
+            sheetsPerRow: "=sheetsPerRow"
         },
         templateUrl: "/modules/common/directives/sheetgrid/sheetgrid.html",
         link: (scope) => {
-            scope.sheetsPerRow = scope.sheetsPerRow || 4;
+            scope.sheetsPerRow = Number(scope.sheetsPerRow) || 4;
             scope.rows = [];
 
             scope.sheets = Sheets.getAll();
