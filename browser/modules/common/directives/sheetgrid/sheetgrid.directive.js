@@ -6,58 +6,24 @@ sheetsApp.directive("sheetGrid", (Sheets) => {
         restrict: "E",
         replace: true,
         scope: {
-            sheets: "="
+            sheets: "=",
+            sheetsPerRow: "="
         },
         templateUrl: "/modules/common/directives/sheetgrid/sheetgrid.html",
         link: (scope) => {
-            scope.maxSheetsPerRow = 4;
+            scope.sheetsPerRow = scope.sheetsPerRow || 4;
             scope.rows = [];
 
             scope.sheets = Sheets.getAll();
 
-            //scope.sheets = [
-            //    {
-            //        id: 1,
-            //        title: "linux commands",
-            //        content: "ls -l"
-            //    },
-            //    {
-            //        id: 2,
-            //        title: "CSS3 flex overview",
-            //        content: "justify-conent etc."
-            //    },
-            //    {
-            //        id: 3,
-            //        title: "some todo list",
-            //        content: "buy milk"
-            //    },
-            //    {
-            //        id: 4,
-            //        title: "linux commands",
-            //        content: "ls -l"
-            //    },
-            //    {
-            //        id: 5,
-            //        title: "CSS3 flex overview",
-            //        content: "justify-conent etc."
-            //    },
-            //    {
-            //        id: 6,
-            //        title: "some todo list",
-            //        content: "buy milk"
-            //    }
-            //];
-
             let currentRow = [];
             scope.sheets.forEach((sheet, index) => {
                 currentRow.push(sheet);
-                if (currentRow.length === scope.maxSheetsPerRow || index === scope.sheets.length -1) {
+                if (currentRow.length === scope.sheetsPerRow || index === scope.sheets.length -1) {
                     scope.rows.push(currentRow);
                     currentRow = [];
                 }
             });
-
-
 
         }
     };

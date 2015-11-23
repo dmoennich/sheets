@@ -21,6 +21,8 @@ module.exports = function(config) {
         "node_modules/angular/angular.js",
 		"node_modules/angular-mocks/angular-mocks.js",
 		"dist/sheets-bundle.js",
+        "node_modules/chance/dist/chance.min.js",
+        "test/helper/**/*.js",
         "test/**/*Spec.js",
 		"browser/modules/**/*.html"
     ],
