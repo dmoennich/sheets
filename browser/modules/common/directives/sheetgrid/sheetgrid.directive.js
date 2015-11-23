@@ -14,16 +14,17 @@ sheetsApp.directive("sheetGrid", (Sheets) => {
             scope.sheetsPerRow = Number(scope.sheetsPerRow) || 4;
             scope.rows = [];
 
-            scope.sheets = Sheets.getAll();
+            Sheets.getAll().then((sheets) => {
+				let currentRow = [];
+				sheets.forEach((sheet, index) => {
+					currentRow.push(sheet);
+					if (currentRow.length === scope.sheetsPerRow || index === sheets.length -1) {
+						scope.rows.push(currentRow);
+						currentRow = [];
+					}
+				});
+			});
 
-            let currentRow = [];
-            scope.sheets.forEach((sheet, index) => {
-                currentRow.push(sheet);
-                if (currentRow.length === scope.sheetsPerRow || index === scope.sheets.length -1) {
-                    scope.rows.push(currentRow);
-                    currentRow = [];
-                }
-            });
 
         }
     };

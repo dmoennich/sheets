@@ -3,7 +3,8 @@ describe("The sheet-grid directive", function () {
 
 	var $compile, $rootScope;
 
-	beforeEach(module("sheetsApp",
+	beforeEach(module(
+			"sheetsApp",
 			"/modules/common/directives/sheetgrid/sheetgrid.html",
 			"/modules/common/directives/sheet/sheet.html"
 	));
