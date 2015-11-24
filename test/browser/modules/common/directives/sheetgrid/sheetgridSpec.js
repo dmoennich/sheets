@@ -1,7 +1,7 @@
 
 describe("The sheet-grid directive", function () {
 
-	var $compile, $rootScope;
+	var $compile, $rootScope, $httpBackend, sheetsRequestHandler;
 
 	beforeEach(module(
 			"sheetsApp",
@@ -9,24 +9,35 @@ describe("The sheet-grid directive", function () {
 			"/modules/common/directives/sheet/sheet.html"
 	));
 
-	beforeEach(inject(function (_$compile_, _$rootScope_) {
+	beforeEach(inject(function (_$compile_, _$rootScope_, _$httpBackend_) {
 		$compile = _$compile_;
 		$rootScope = _$rootScope_;
+		$httpBackend = _$httpBackend_;
+
+		// return 3 sheets by default
+		var sheets = sheetsTestHelper.sheetCreator.createSheets(3);
+		sheetsRequestHandler = $httpBackend.when("GET", "/api/sheets").respond(201, sheets);
+
 	}));
 
+	afterEach(function () {
+		$httpBackend.verifyNoOutstandingRequest();
+	});
 
 	describe("constructs a sheet grid", function () {
 
 		it("with specified width", function () {
 
-			//TODO stub this as sheet response
 			var sheets = sheetsTestHelper.sheetCreator.createSheets(5);
-
+			sheetsRequestHandler.respond(200, sheets);
 
 			$rootScope.sheetsPerRow = 3;
 
 			var gridElement = $compile("<sheet-grid sheets-per-row='sheetsPerRow'></sheet-grid>")($rootScope);
+
 			$rootScope.$digest();
+			$httpBackend.flush();
+
 			var rows = gridElement.find(".row");
 
 			// 2 rows
@@ -44,7 +55,7 @@ describe("The sheet-grid directive", function () {
 		});
 
 
-
+		
 
 		//TODO test default 4 sheets per row
 
