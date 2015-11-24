@@ -23,6 +23,9 @@ sheetsApp.directive("sheetGrid", (Sheets) => {
 						currentRow = [];
 					}
 				});
+                if (sheets.length === 0) {
+                    scope.noSheets = true;
+                }
 			});
 
 
