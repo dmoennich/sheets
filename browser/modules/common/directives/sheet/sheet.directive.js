@@ -8,8 +8,6 @@ sheetsApp.directive("sheet", () => {
         scope: {
             "sheet": "=data"
         },
-        templateUrl: "/modules/common/directives/sheet/sheet.html",
-        link: (scope) => {
-        }
+        templateUrl: "/modules/common/directives/sheet/sheet.html"
     };
 });

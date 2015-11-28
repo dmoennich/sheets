@@ -31,6 +31,7 @@ describe("The sheet-grid directive", function () {
 
 	afterEach(function () {
 		$httpBackend.verifyNoOutstandingRequest();
+		$httpBackend.verifyNoOutstandingExpectation();
 	});
 
 
