@@ -11,19 +11,16 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', "browserify"],
 
 
     // list of files / patterns to load in the browser
     files: [
-        "node_modules/lodash/dist/lodash.min.js",
         "node_modules/jquery/dist/jquery.min.js",
         "node_modules/bootstrap/dist/js/bootstrap.min.js",
         "node_modules/angular/angular.js",
 		"node_modules/angular-mocks/angular-mocks.js",
 		"dist/sheets-bundle.js",
-        "node_modules/chance/dist/chance.min.js",
-        "test/helper/**/*.js",
         "test/**/*Spec.js",
 		"browser/modules/**/*.html"
     ],
@@ -38,7 +35,8 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-		"browser/modules/**/*.html": ["ng-html2js"]
+		"browser/modules/**/*.html": ["ng-html2js"],
+        "test/**/*.js": "browserify"
     },
 
 	  ngHtml2JsPreprocessor: {

@@ -3,12 +3,12 @@ describe("The Sheet directive", function () {
 
 	var $compile, $rootScope, sheetElement;
 
-	beforeEach(module("sheetsApp"));
+	beforeEach(angular.mock.module("sheetsApp"));
 
 	// puts directives HTML template in $templateCache (provided by ng-html2js preprocessor)
-	beforeEach(module("/modules/common/directives/sheet/sheet.html"));
+	beforeEach(angular.mock.module("/modules/common/directives/sheet/sheet.html"));
 
-	beforeEach(inject(function (_$compile_, _$rootScope_) {
+	beforeEach(angular.mock.inject(function (_$compile_, _$rootScope_) {
 		$compile = _$compile_;
 		$rootScope = _$rootScope_;
 	}));

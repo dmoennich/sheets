@@ -1,17 +1,16 @@
-/**
- * Created by daniel on 28.11.15.
- */
+var sheetCreator = require("../../../../helper/sheetcreator");
+var _ = require("../../../../../node_modules/lodash/dist/lodash.js");
 
 describe("sheet.factory", function () {
 
 	var $httpBackend,
 		sheetFactory,
-		sheets = sheetsTestHelper.sheetCreator.createSheets(3),
+		sheets = sheetCreator.createSheets(3),
 		requestHandler;
 
-	beforeEach(module("sheetsApp"));
+	beforeEach(angular.mock.module("sheetsApp"));
 
-	beforeEach(inject(function (_$httpBackend_, _Sheets_) {
+	beforeEach(angular.mock.inject(function (_$httpBackend_, _Sheets_) {
 		$httpBackend = _$httpBackend_;
 		sheetFactory = _Sheets_;
 		requestHandler = $httpBackend.when("GET", "/api/sheets").respond(200, sheets);

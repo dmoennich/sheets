@@ -1,3 +1,4 @@
+var sheetCreator = require("../../../../../helper/sheetcreator");
 
 describe("The sheet-grid directive", function () {
 
@@ -12,19 +13,19 @@ describe("The sheet-grid directive", function () {
 
 	};
 
-	beforeEach(module(
+	beforeEach(angular.mock.module(
 			"sheetsApp",
 			"/modules/common/directives/sheetgrid/sheetgrid.html",
 			"/modules/common/directives/sheet/sheet.html"
 	));
 
-	beforeEach(inject(function (_$compile_, _$rootScope_, _$httpBackend_) {
+	beforeEach(angular.mock.inject(function (_$compile_, _$rootScope_, _$httpBackend_) {
 		$compile = _$compile_;
 		$rootScope = _$rootScope_;
 		$httpBackend = _$httpBackend_;
 
 		// return 3 sheets by default
-		var sheets = sheetsTestHelper.sheetCreator.createSheets(3);
+		var sheets = sheetCreator.createSheets(3);
 		sheetsRequestHandler = $httpBackend.when("GET", "/api/sheets").respond(201, sheets);
 
 	}));
@@ -37,7 +38,7 @@ describe("The sheet-grid directive", function () {
 
 	it("should construct a grid with specified width", function () {
 
-		var sheets = sheetsTestHelper.sheetCreator.createSheets(5),
+		var sheets = sheetCreator.createSheets(5),
 			rows,
 			grid;
 
@@ -70,7 +71,7 @@ describe("The sheet-grid directive", function () {
 
 	it("should build a grid with 4 sheets per row by default", function () {
 
-		var sheets = sheetsTestHelper.sheetCreator.createSheets(6),
+		var sheets = sheetCreator.createSheets(6),
 			grid,
 			rows;
 

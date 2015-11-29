@@ -1,5 +1,7 @@
-window.sheetsTestHelper = window.sheetsTestHelper || {};
-window.sheetsTestHelper.sheetCreator = {
+var Chance = require("../../node_modules/chance/chance.js"),
+	chance = new Chance();
+
+var sheetCreator = {
 	createSheets: function (num) {
 		var sheets = [], currentId = 0;
 
@@ -18,3 +20,4 @@ window.sheetsTestHelper.sheetCreator = {
 	}
 };
 
+module.exports = sheetCreator;
