@@ -1,13 +1,14 @@
 var sheetCreator = require("../../../../../helper/sheetcreator");
 
-describe("The sheet-grid directive", function () {
+describe("sheet-grid directive", function () {
 
 	var $compile, $rootScope, $httpBackend, sheetsRequestHandler;
 
 	var getGridRows = function (gridElement) {
 
 		var rows = gridElement.find(".row");
-		return Array.prototype.map.call(rows, function (row) {
+		rows = Array.prototype.slice.call(rows, 1);	// extract first row holding the command input
+		return rows.map(function (row) {
 			return angular.element(row);
 		});
 
@@ -105,6 +106,68 @@ describe("The sheet-grid directive", function () {
 	});
 
 
+	describe("sheet filter", function () {
+
+		var sheets = [
+			{
+				id: "1",
+				title: "Blacky",
+				content: "dog"
+			},
+			{
+				id: "2",
+				title: "Milu",
+				content: "cat"
+			},
+			{
+				id: "3",
+				title: "Beppi",
+				content: "dog"
+			},
+
+		],
+		grid,
+		cmdInput;
+
+		beforeEach(function () {
+			sheetsRequestHandler.respond(200, sheets);
+			grid = $compile("<sheet-grid></sheet-grid>")($rootScope);
+			$httpBackend.flush();
+			$rootScope.$digest();
+			cmdInput = grid.find(".cmd");
+		});
+
+
+		it("should display all sheets if input field is empty (default)", function () {
+
+			var inputFieldText = cmdInput.val();
+
+			expect(inputFieldText).toEqual("");
+			expect(grid.find(".sheet").length).toBe(3);
+		});
+
+
+		it("should display only sheets matching filter", function () {
+
+			cmdInput.val("dog").trigger("input");
+
+			var resultSheets = grid.find(".sheet");
+			var firstSheet = angular.element(resultSheets[0]);
+			var secondSheet = angular.element(resultSheets[1]);
+
+			expect(resultSheets.length).toBe(2);
+			expect(firstSheet.text()).toContain("Blacky");
+			expect(secondSheet.text()).toContain("Beppi");
+		});
+
+
+		//TODO test for displaying text when no sheet is matching the filter
+
+		//TODO test for arrangement of rows dependent on filtered sheets
+
+
+
+	});
 
 
 

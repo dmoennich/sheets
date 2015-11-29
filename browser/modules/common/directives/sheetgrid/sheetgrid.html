@@ -1,4 +1,11 @@
 <div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <input ng-model="command" class="cmd" type="text" />
+        </div>
+    </div>
+
     <div ng-repeat="row in rows" class="row">
         <div ng-repeat="sheet in row" class="col-md-{{12 / sheetsPerRow}}">
             <sheet data="sheet"></sheet>

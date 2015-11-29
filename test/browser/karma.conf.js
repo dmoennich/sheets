@@ -2,82 +2,86 @@
 // Generated on Sun Nov 22 2015 15:34:27 GMT+0100 (CET)
 var path = require("path");
 
-module.exports = function(config) {
-  config.set({
+module.exports = function (config) {
+	config.set({
 
-    // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: path.join(__dirname, "../../"),
-
-
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine', "browserify"],
+		// base path that will be used to resolve all patterns (eg. files, exclude)
+		basePath: path.join(__dirname, "../../"),
 
 
-    // list of files / patterns to load in the browser
-    files: [
-        "node_modules/jquery/dist/jquery.min.js",
-        "node_modules/bootstrap/dist/js/bootstrap.min.js",
-        "node_modules/angular/angular.js",
-		"node_modules/angular-mocks/angular-mocks.js",
-		"dist/sheets-bundle.js",
-        "test/**/*Spec.js",
-		"browser/modules/**/*.html"
-    ],
+		// frameworks to use
+		// available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+		frameworks: ['jasmine', "browserify"],
 
 
-    // list of files to exclude
-    exclude: [
-		"test/browser/karma.conf.js"
-    ],
+		// list of files / patterns to load in the browser
+		files: [
+			"node_modules/jquery/dist/jquery.min.js",
+			"node_modules/bootstrap/dist/js/bootstrap.min.js",
+			"node_modules/angular/angular.js",
+			"node_modules/angular-mocks/angular-mocks.js",
+			"dist/sheets-bundle.js",
+			"test/**/*Spec.js",
+			"browser/modules/**/*.html"
+		],
 
 
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-		"browser/modules/**/*.html": ["ng-html2js"],
-        "test/**/*.js": "browserify"
-    },
-
-	  ngHtml2JsPreprocessor: {
-		  stripPrefix: "browser"
-	  },
+		// list of files to exclude
+		exclude: [
+			"test/browser/karma.conf.js"
+		],
 
 
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+		// preprocess matching files before serving them to the browser
+		// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+		preprocessors: {
+			"browser/modules/**/*.html": ["ng-html2js"],
+			"test/**/*.js": "browserify"
+		},
+
+		ngHtml2JsPreprocessor: {
+			stripPrefix: "browser"
+		},
+
+		browserify: {
+			debug: true
+		},
 
 
-    // web server port
-    port: 9876,
+		// test results reporter to use
+		// possible values: 'dots', 'progress'
+		// available reporters: https://npmjs.org/browse/keyword/karma-reporter
+		reporters: ['progress'],
 
 
-    // enable / disable colors in the output (reporters and logs)
-    colors: true,
+		// web server port
+		port: 9876,
 
 
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
+		// enable / disable colors in the output (reporters and logs)
+		colors: true,
 
 
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+		// level of logging
+		// possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+		logLevel: config.LOG_INFO,
 
 
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+		// enable / disable watching file and executing tests whenever any file changes
+		autoWatch: true,
 
 
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true,
+		// start these browsers
+		// available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+		browsers: ['Chrome'],
 
-    // Concurrency level
-    // how many browser should be started simultanous
-    concurrency: Infinity
-  })
+
+		// Continuous Integration mode
+		// if true, Karma captures browsers, runs the tests and exits
+		singleRun: true,
+
+		// Concurrency level
+		// how many browser should be started simultanous
+		concurrency: Infinity
+	})
 };
